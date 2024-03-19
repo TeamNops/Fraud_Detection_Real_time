@@ -1,0 +1,460 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+  <title>Real-time Fraud Detection System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f2f2f2;
+      -webkit-font-smoothing: antialiased;
+      font-family: 'Varela Round', sans-serif;
+      height: 100%;
+    }
+    h1 {  
+        color: #fff;
+        font-size: 2rem;
+        font-weight: bold;
+        margin: 0;
+        padding: 20px;
+        text-align: center;
+      }
+      #navbar {
+        background-color: #000;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+      }
+      #navbar a {
+        color: #fff;
+        text-decoration: none;
+      }
+      #navbar ul {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      #navbar li {
+        padding: 12px;
+        margin-right: 10px; /* Add margin between navbar items */
+      }
+      .search-txtbox {
+        display: block;
+        margin-left: auto;
+        text-align: center;
+        gap: 30px;
+        padding: 5px;
+      }
+      
+      .search-box {
+        border: none;
+        border-bottom: 1px solid #aaa;
+        background: transparent;
+        outline: none;
+        height: 30px;
+        color: #fff;
+        width: 250px;
+        text-transform: capitalize;
+        font-size: 16px;
+        font-weight: 500;
+        transition: 0.5s;
+      
+      }
+      
+      .search-box:focus {
+        width: 400px;
+        border-color: #1f80e0;
+      
+      }
+      .navbar_nav_items {
+        display: flex;
+        gap: 10px;
+      }
+      .navbar_nops {
+        height: 100%;
+        width: 125px;
+      }
+      
+      .nops_logo {
+        width: 100%;
+        height: 100%;
+      }
+
+
+      .language_drop_down {
+        background: transparent;
+        border: none;
+        color: white;
+      }
+      .dropdown_container {
+        border: 1px solid white;
+        padding: 0.4rem;
+        border-radius: 5px;
+        background: rgba(0, 0, 0, 0.4);
+      }
+      
+      .signin_button {
+        border: #dc030f;
+        background-color: #dc030f;
+        color: white;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        height: 35px;
+        width: 100px;
+      }
+      .home {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+      }
+      .container {
+        position: relative;
+        z-index: -1; /* Ensure content is on top of particles */
+      }
+      .home {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+      }
+      .box {
+        background-color: #111;
+        border-radius: 75px;
+        box-shadow: 0 10px 5px rgba(0, 0, 0, 0.1);
+        flex: 1;
+        margin-bottom: 40px;
+        padding: 30px;
+        text-align: center;
+         /* Optional: Set background color behind particles */
+      
+      }
+      .box h2 {
+        color: #fff;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin: 0 0 10px;
+      }
+      .box p {
+        color: #aaa;
+        margin: 0 0 20px;
+      }
+      .learn-more {
+        display: inline-block;
+        background-color: #333;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 1rem;
+        padding: 10px 20px;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      .learn-more:hover {
+        background-color: #444;
+      }
+    
+    .visit {
+      color: white;
+      font-size: 12px;
+      background: #32333a;
+      width: 146px;
+      padding: 6px;
+      border-radius: 10px;
+      position: fixed;
+      right: 20px;
+    }
+    
+    span.new {
+      background-color: #fc3565;
+      font-weight: 700;
+      padding: .2rem;
+      margin-left: .4rem;
+      color: #fff;
+    }
+    .container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #000; /* Optional: Set background color behind particles */
+      z-index: -1;
+
+    }
+
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background:  #3586ff;
+  min-height: 50px;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.social-icon,
+.menu {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 0;
+  flex-wrap: wrap;
+}
+
+.social-icon__item,
+.menu__item {
+  list-style: none;
+}
+
+.social-icon__link {
+  font-size: 2rem;
+  color: #fff;
+  margin: 0 12px;
+  display: inline-block;
+  transition: 0.5s;
+}
+.social-icon__link:hover {
+  transform: translateY(-10px);
+}
+
+.menu__link {
+  font-size: 1.2rem;
+  color: #fff;
+  margin: 0 10px;
+  display: inline-block;
+  transition: 0.5s;
+  text-decoration: none;
+  opacity: 0.75;
+  font-weight: 300;
+}
+
+.menu__link:hover {
+  opacity: 1;
+}
+
+.footer p {
+  color: #fff;
+  margin: 15px 0 10px 0;
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.wave {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: url("https://i.ibb.co/wQZVxxk/wave.png");
+  background-size: 1000px 100px;
+}
+
+.wave#wave1 {
+  z-index: 1000;
+  opacity: 1;
+  bottom: 0;
+  animation: animateWaves 4s linear infinite;
+}
+
+.wave#wave2 {
+  z-index: 999;
+  opacity: 0.5;
+  bottom: 10px;
+  animation: animate 4s linear infinite !important;
+}
+
+.wave#wave3 {
+  z-index: 1000;
+  opacity: 0.2;
+  bottom: 15px;
+  animation: animateWaves 3s linear infinite;
+}
+
+.wave#wave4 {
+  z-index: 999;
+  opacity: 0.7;
+  bottom: 20px;
+  animation: animate 3s linear infinite;
+}
+
+@keyframes animateWaves {
+  0% {
+    background-position-x: 1000px;
+  }
+  100% {
+    background-positon-x: 0px;
+  }
+}
+
+@keyframes animate {
+  0% {
+    background-position-x: -1000px;
+  }
+  100% {
+    background-positon-x: 0px;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div>
+<nav id="navbar">
+  <!-- <ul>
+    <li><a href="#sms-fraud">NOps</a></li>
+  </ul> -->
+  <div class="navbar_nops">
+    <img src="logo.png" alt="NOps" class="nops_logo" />
+  </div>
+  <div class="search-txtbox">
+    <input type="text" class="search-box" placeholder="Search" />
+  </div>
+
+<div class="navbar_nav_items">
+  <div class="nav_item">
+    <div class="dropdown_container">
+      <i class="fa fa-globe"></i>
+      <select name="language" id="languageSelect" class="language_drop_down">
+        <option value="english" selected>Customer</option>
+        <option value="hindi" selected>Staff</option>
+        <option value="hindi" selected>Management</option>
+      </select>
+    </div>
+  </div>
+  <div class="nav_item">
+    <button class="signin_button">Sign In</button>
+  </div>
+</nav>
+
+<h1><br>Real-time Fraud Detection System</h1>
+
+<div>
+  <div class="container">
+    <div class="home">
+        <div class="box" id="sms-fraud-box">
+          <h2>SMS Fraud</h2>
+          <p>Detect fraudulent SMS messages in real-time.</p>
+          <a href="sms-fraud.html" class="learn-more">Learn More</a>
+        </div>
+        <div class="box" id="fraud-transactions-box">
+          <h2>Fraud Transactions</h2>
+          <p>Monitor and detect fraudulent transactions in real-time.</p>
+          <a href="fraud-transactions.html" class="learn-more">Learn More</a>
+        </div>
+        <div class="box" id="phishing-box">
+          <h2>Phishing</h2>
+          <p>Detect and prevent phishing attacks in real-time.</p>
+          <a href="phishing.html" class="learn-more">Learn More</a>
+        </div>
+        <div class="box" id="rl-box">
+          <h2>RL</h2>
+          <p>Learn about reinforcement learning and its applications in fraud detection.</p>
+          <a href="rl.html" class="learn-more">Learn More</a>
+        </div>
+      </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    particlesJS("particles-js", {
+      "particles": {
+        "number": {
+          "value": 50
+        },
+        "color": {
+          "value": "#ffffff"
+        },
+        "shape": {
+          "type": "circle"
+        },
+        "opacity": {
+          "value": 0.5
+        },
+        "size": {
+          "value": 3
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#ffffff",
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 6
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": {
+            "enable": false
+          },
+          "onclick": {
+            "enable": false
+          },
+          "resize": true
+        }
+      },
+      "retina_detect": true
+    });
+  </script>
+
+<footer class="footer">
+  <div class="waves">
+    <div class="wave" id="wave1"></div>
+    <div class="wave" id="wave2"></div>
+    <div class="wave" id="wave3"></div>
+    <div class="wave" id="wave4"></div>
+  </div>
+  <ul class="social-icon">
+    <li class="social-icon__item"><a class="social-icon__link" href="#">
+        <ion-icon name="logo-facebook"></ion-icon>
+      </a></li>
+    <li class="social-icon__item"><a class="social-icon__link" href="#">
+        <ion-icon name="logo-twitter"></ion-icon>
+      </a></li>
+    <li class="social-icon__item"><a class="social-icon__link" href="#">
+        <ion-icon name="logo-linkedin"></ion-icon>
+      </a></li>
+    <li class="social-icon__item"><a class="social-icon__link" href="#">
+        <ion-icon name="logo-instagram"></ion-icon>
+      </a></li>
+  </ul>
+  <ul class="menu">
+    <li class="menu__item"><a class="menu__link" href="#">Home</a></li>
+    <li class="menu__item"><a class="menu__link" href="#">About</a></li>
+    <li class="menu__item"><a class="menu__link" href="#">Services</a></li>
+    <li class="menu__item"><a class="menu__link" href="#">Team</a></li>
+    <li class="menu__item"><a class="menu__link" href="#">Contact</a></li>
+
+  </ul>
+  <p>&copy;2024 NOps | All Rights Reserved</p>
+</footer>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
